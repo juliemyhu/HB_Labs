@@ -20,12 +20,14 @@ def all_houses(filename):
     cohort_data = open(filename)
 
     for line in cohort_data:
-      person_information = line.split("|") 
-      house = person_information[2]
-      if house:
-        houses.add(house)
+        person_information = line.split('|')
+        house = person_information[2]
+        if house:
+            houses.add(house)
 
     return houses
+
+
 
 
 def students_by_cohort(filename, cohort='All'):
@@ -58,7 +60,19 @@ def students_by_cohort(filename, cohort='All'):
 
     students = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
+
+    for line in cohort_data:
+
+        person_information = line.split('|') 
+        cohort_name = person_information[-1]
+        first_name = person_information[0]
+        last_name = person_information [1]
+
+        if cohort_name == 'I' or cohort_name == 'G':
+            print (first_name)
+        else:
+            students.append(f'{first_name} {last_name}')
 
     return sorted(students)
 
@@ -102,7 +116,7 @@ def all_names_by_house(filename):
     ghosts = []
     instructors = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
 
     return []
 
