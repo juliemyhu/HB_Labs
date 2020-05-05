@@ -9,7 +9,7 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
-    text_file = open(file_path[1])
+    text_file = open(file_path)
 
     text = text_file.read()
 
@@ -50,18 +50,23 @@ def make_chains(text_string):
     print (words)
     words.append(None)
 
+    print ("-" *10)
+
     for idx, word, in enumerate(words[:-2]):
-        key = words[idx +2]
+        key = (word, words[idx +1])
         value = words[idx +2]
 
         if key not in chains:
             chains[key] = []
             
         chains[key].append(value)
+    print (chains)
 
     return chains
 
-make_chains(open_and_read_file(sys.argv))
+
+
+# make_chains(open_and_read_file(sys.argv))
 
 def make_text(chains):
     """Return text from chains."""
@@ -73,15 +78,15 @@ def make_text(chains):
     return " ".join(words)
 
 
-# input_path = "green-eggs.txt"
+input_path = sys.argv[1]
 
-# # Open the file and turn it into one long string
-# input_text = open_and_read_file(input_path)
+# Open the file and turn it into one long string
+input_text = open_and_read_file(input_path)
 
-# # Get a Markov chain
-# chains = make_chains(input_text)
+# Get a Markov chain
+chains = make_chains(input_text)
 
-# # Produce random text
+# Produce random text
 # random_text = make_text(chains)
 
 # print(random_text)
