@@ -47,10 +47,10 @@ def make_chains(text_string):
 
     chains = {}
     words = text_string.split()
-    print (words)
+    # print (words)
     words.append(None)
 
-    print ("-" *10)
+    # print ("-" *10)
 
     for idx, word, in enumerate(words[:-2]):
         key = (word, words[idx +1])
@@ -60,7 +60,7 @@ def make_chains(text_string):
             chains[key] = []
             
         chains[key].append(value)
-    print (chains)
+    # print (chains)
 
     return chains
 
@@ -71,9 +71,14 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
-    words = []
+    key= choice(list(chains.keys()))
+    words = [key[0],key[1]]
+    word = choice(chains[key])
 
-    # your code goes here
+    while word is not None:
+        key = (key[1],word)
+        words.append(word)
+        word = choice(chains[key])
 
     return " ".join(words)
 
@@ -87,6 +92,6 @@ input_text = open_and_read_file(input_path)
 chains = make_chains(input_text)
 
 # Produce random text
-# random_text = make_text(chains)
+random_text = make_text(chains)
 
-# print(random_text)
+print(random_text)
