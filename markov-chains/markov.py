@@ -1,5 +1,4 @@
 """Generate Markov text from text files."""
-
 from random import choice
 import sys
 
@@ -13,9 +12,10 @@ def open_and_read_file(file_path):
 
     text = text_file.read()
 
-    # text_file.close()
+    text_file.close()
 
-    return text #text strings
+    return text #text is now a long file of words
+
 
 # print(open_and_read_file(sys.argv[1]))
 
@@ -45,14 +45,21 @@ def make_chains(text_string):
         [None]
     """
 
-    chains = {}
-    words = text_string.split()
-    # print (words)
+    chains = {} # empty dictionary name
+
+    words = text_string.split() # splits the giant text into list of strings called words
+
+
+    # set a stopping point to our list 
     words.append(None)
 
+    #list of words ['Would', 'you', 'could', 'you',... 'Sam', 'I', 'am?', None]
+    # print (words)
     # print ("-" *10)
 
-    for idx, word, in enumerate(words[:-2]):
+    # create a loop to iterate through words except last two
+    for idx, word in enumerate(words[:-2]):
+
         key = (word, words[idx +1])
         value = words[idx +2]
 
@@ -60,7 +67,7 @@ def make_chains(text_string):
             chains[key] = []
             
         chains[key].append(value)
-    # print (chains)
+    # print (f'chains in dict form : {chains}')
 
     return chains
 
@@ -70,9 +77,9 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-
-    key= choice(list(chains.keys()))
-    words = [key[0],key[1]]
+    
+    key= choice(list(chains.keys())) 
+    words = [key[0],key[1]] 
     word = choice(chains[key])
 
     while word is not None:
@@ -80,7 +87,14 @@ def make_text(chains):
         words.append(word)
         word = choice(chains[key])
 
-    return " ".join(words)
+    print(type(words)) #list
+    print(words)
+    
+
+    joined_words = " ".join(words)
+    print(type(joined_words)) #str
+    print(joined_words)
+    # return " ".join(words)
 
 
 input_path = sys.argv[1]
