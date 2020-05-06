@@ -67,7 +67,7 @@ def make_chains(text_string):
             chains[key] = []
             
         chains[key].append(value)
-    # print (f'chains in dict form : {chains}')
+    print (f'chains= {chains}')
 
     return chains
 
@@ -77,13 +77,26 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-    
+
+    # creates list of all the keys ex.(['Would', 'you'],['you','could'],...) and takes a random one
     key= choice(list(chains.keys())) 
+    print(f'key:{key}')
+    # key would be ('Would','you') 
+    # words = [Would you]
     words = [key[0],key[1]] 
+
+    #take a random key's (pair of words) value  like 'could' or 'like'
+    # this is where that % comes in
+    print(chains[key])
     word = choice(chains[key])
 
+    # ('I','am?'):[None]
+    # word is [None] in the last line so it will continue until here
     while word is not None:
+        # it will keep generating a random key (pair of words) to continue from 
+        # new key --> ('you','could')
         key = (key[1],word)
+        # append the value to the output (words)
         words.append(word)
         word = choice(chains[key])
 
