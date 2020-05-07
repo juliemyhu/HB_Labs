@@ -83,7 +83,9 @@ async def on_message(message):
         return
 
     if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+        await message.channel.send(make_text(chains))
 
-os.environ['DISCORD_TOKEN']
+
+
+
 client.run(os.environ['DISCORD_TOKEN'])
