@@ -12,17 +12,22 @@ class MelonType(object):
 
         self.pairings = []
 
-        # Fill in the rest
+        self.code = code
+        self.first_harvest = first_harvest
+        self.color = color
+        self.is_seedless = is_seedless
+        self.is_bestseller = is_bestseller
 
     def add_pairing(self, pairing):
         """Add a food pairing to the instance's pairings list."""
 
-        # Fill in the rest
+        self.pairings.append(pairing)
 
     def update_code(self, new_code):
         """Replace the reporting code with the new_code."""
 
-        # Fill in the rest
+        self.code = new_code 
+        print(f'Code is now {new_code}')
 
 
 def make_melon_types():
@@ -30,7 +35,8 @@ def make_melon_types():
 
     all_melon_types = []
 
-    # Fill in the rest
+
+    def 
 
     return all_melon_types
 
