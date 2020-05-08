@@ -82,9 +82,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
+    if message.content.startswith('hello'):
+        await message.channel.send("hey, i can make markov poems ")
         await message.channel.send(make_text(chains))
-
+    if message.content.startswith('Who'):
+        await message.channel.send("hu what where when why")
 
 
 
