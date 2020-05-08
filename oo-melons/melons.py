@@ -15,7 +15,15 @@ class AbstractMelonOrder():
         """Calculate price, including tax."""
         # christmas melons = 1.5 times as much as baseprice
         base_price = 5
+
+        if self.species == "Christmas melon":
+            base_price *= 1.5
+
         total = (1 + self.tax) * self.qty * base_price
+
+        if self.order_type == "international" and self.qty < 10:
+            total += 3
+
 
         return total
 
@@ -30,9 +38,8 @@ class DomesticMelonOrder(AbstractMelonOrder):
 
     def __init__(self, species, qty):
         """Initialize melon order attributes."""
-
         #ordertype and tax is overwritten now
-        super()__init__(species,qty,"domestic",0.08)
+        super().__init__(species, qty, "domestic", 0.08)
 
 
 class InternationalMelonOrder(AbstractMelonOrder):
@@ -40,10 +47,12 @@ class InternationalMelonOrder(AbstractMelonOrder):
 
     def __init__(self, species, qty, country_code):
         """Initialize melon order attributes."""
-        super()__init__(species,qty, "international", 0.17)
+        super().__init__(species,qty, "international", 0.17)
+        self.country_code = country_code
 
     # own method for InternationalMelonOrder
     def get_country_code(self):
         """Return the country code."""
 
         return self.country_code
+
