@@ -2,7 +2,7 @@
 
 class AbstractMelonOrder():
 
-    def __init__(self, species, qty, order_type, tax ):
+    def __init__(self, species, qty, order_type, tax):
         """Initialize melon order attributes."""
 
         self.species = species
@@ -56,3 +56,15 @@ class InternationalMelonOrder(AbstractMelonOrder):
 
         return self.country_code
 
+class GovernmentMelonOrder(AbstractMelonOrder):
+    """An Government melon order."""
+
+    def __init__(self, species, qty):
+        """Initialize melon order attributes"""
+
+        super().__init__(species,qty,"government",0)
+        self.passed_inspection = False
+
+                #passed is a boolean, True
+    def mark_inspection(passed):
+        self.passed_inspection = True
