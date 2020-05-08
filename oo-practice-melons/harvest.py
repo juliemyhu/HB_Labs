@@ -75,7 +75,9 @@ def make_melon_type_lookup(melon_types):
     melons_by_id = {}
 
     for melon in melon_types:
+        # if code not in dict..
         if melon.code not in melons_by_id:
+            # code = musk
             melons_by_id[melon.code]= melon 
 
     return melons_by_id
@@ -118,7 +120,7 @@ def make_melons(melon_types):
     melon_6 = Melon(melons_by_id['cren'], 8, 2, 35, 'Michael')
     melon_7 = Melon(melons_by_id['cren'], 2, 3, 4, 'Michael')
     melon_8 = Melon(melons_by_id['musk'], 6, 7, 4, 'Michael')
-    melon_9 = Melon(melons_by_id['yw'], 7, 10, 3, 'Michael')
+    melon_9 = Melon(melons_by_id['yw'], 7, 10, 3, 'Sheila')
 
     melons.extend([melon_1, melon_2, melon_3, melon_4, melon_5,
                    melon_6, melon_7, melon_8, melon_9])
@@ -131,9 +133,12 @@ def get_sellability_report(melons):
     for melon in melons:
         harvest_by = f'Harvested by {melon.harvested_by}'
         field_num = f'Field #{melon.harvest_field}'
-        status = 'CAN BE SOLD' if melon.is_sellable() else 'NOT SELLABLE'
+        status = 'can be sold' if melon.is_sellable() else 'not sellable'
 
         print(f'{harvest_by} from {field_num} {status}')
+
+
+
 
                       #melon_types)
 print_pairing_info(make_melon_types())
