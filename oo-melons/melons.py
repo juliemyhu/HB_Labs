@@ -11,6 +11,9 @@ class AbstractMelonOrder():
         self.tax = tax # tax changes 
         self.shipped = False
 
+    def get_base_price(self):
+        pass
+
     def get_total(self):
         """Calculate price, including tax."""
         # christmas melons = 1.5 times as much as baseprice
@@ -31,6 +34,8 @@ class AbstractMelonOrder():
         """Record the fact than an order has been shipped."""
 
         self.shipped = True
+
+   
 
 
 class DomesticMelonOrder(AbstractMelonOrder):
@@ -58,13 +63,13 @@ class InternationalMelonOrder(AbstractMelonOrder):
 
 class GovernmentMelonOrder(AbstractMelonOrder):
     """An Government melon order."""
-
+                                    #ordertype, tax 
     def __init__(self, species, qty):
         """Initialize melon order attributes"""
-
+                                #new ordertype and tax
         super().__init__(species,qty,"government",0)
         self.passed_inspection = False
 
                 #passed is a boolean, True
-    def mark_inspection(passed):
+    def mark_inspection(self, passed):
         self.passed_inspection = True
